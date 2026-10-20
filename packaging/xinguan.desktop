@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=芯观
+GenericName=硬件监测
+Comment=实时查看占用率、部件功率、温度、风扇与电池
+Exec=xinguan
+TryExec=xinguan
+Icon=local.ahua.HardwarePanel
+Terminal=false
+Categories=System;Monitor;
+StartupNotify=true
+StartupWMClass=xinguan
+Keywords=芯观;Xinguan;硬件;监控;功耗;功率;温度;风扇;CPU;GPU;

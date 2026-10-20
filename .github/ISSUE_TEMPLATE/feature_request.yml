@@ -1,0 +1,37 @@
+name: 功能建议
+description: 提议新指标、新机型支持或界面改进
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提议前请确认没有越过项目的[数据边界](https://github.com/chengminhua/xinguan/blob/main/docs/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md#%E6%95%B0%E6%8D%AE%E8%BE%B9%E7%95%8C)：
+        不伪造整机功耗、不添加未验证的风扇控制、不用 0 填补缺失读数。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 想解决什么问题
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议的做法
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 数据来源
+      description: 新增指标请给出 sysfs / proc 路径、命令或文档，并说明读不到时显示什么。
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: 边界确认
+      options:
+        - label: 方案不会伪造整机功耗或风扇控制
+          required: true
+        - label: 方案在数据缺失时会显示“—”而不是 0
+          required: true
+        - label: 方案保持只读，不写 sysfs 或修改系统策略
+          required: true

@@ -1,0 +1,3 @@
+# Runtime dependency not shipped with the distribution.
+# On Ubuntu the recommended package is python3-psutil.
+psutil>=5.9

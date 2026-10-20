@@ -1,0 +1,71 @@
+name: 问题反馈
+description: 报告可复现的故障或数据读取问题
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。提交前请确认：问题不是“插电时没有整机功耗”或“不能调风扇”，
+        这两项是[已知的数据边界](https://github.com/chengminhua/xinguan/blob/main/docs/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md#%E6%95%B0%E6%8D%AE%E8%BE%B9%E7%95%8C)。
+        请勿粘贴账号、凭证、个人路径或完整家目录日志。
+  - type: input
+    id: system
+    attributes:
+      label: 系统与版本
+      placeholder: Ubuntu 24.04 ARM64 / 内核版本
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: 硬件型号
+      placeholder: 例如 AIBOOK M1000；其他机型请注明
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: 安装方式
+      options:
+        - 发布包 deb
+        - 从源码运行
+        - 其他
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 受影响页面
+      multiple: true
+      options:
+        - 总览
+        - 处理器
+        - 内存
+        - 网络
+        - 功率
+        - 温度
+        - 风扇
+        - 电池
+        - 启动 / 窗口 / 菜单
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开芯观
+        2. 切换到……
+        3. 看到……
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望与实际
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 诊断信息
+      description: 可运行 `python3 src/metrics.py --count 1`，删除输出中的个人路径后再粘贴。
+      render: json

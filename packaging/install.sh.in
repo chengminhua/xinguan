@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+XINGUAN_PACKAGE_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd -- "$XINGUAN_PACKAGE_DIR"
+
+sha256sum --check SHA256SUMS.txt
+
+if ! command -v dpkg >/dev/null || [[ "$(dpkg --print-architecture)" != "arm64" ]]; then
+    echo "这个安装包仅适用于 Ubuntu 24.04 ARM64（aarch64）。" >&2
+    exit 1
+fi
+if [[ ! -r /etc/os-release ]]; then
+    echo "无法识别系统，请参考使用说明。" >&2
+    exit 1
+fi
+source /etc/os-release
+if [[ "${ID:-}" != "ubuntu" || "${VERSION_ID:-}" != "24.04" ]]; then
+    echo "此分享包仅验证过 Ubuntu 24.04；当前系统不在自动安装范围。" >&2
+    exit 1
+fi
+
+echo "将使用系统 apt 安装芯观及缺少的依赖，可能需要网络和管理员密码。"
+if [[ "$EUID" -eq 0 ]]; then
+    apt install "$XINGUAN_PACKAGE_DIR/xinguan_@VERSION@_arm64.deb"
+else
+    sudo apt install "$XINGUAN_PACKAGE_DIR/xinguan_@VERSION@_arm64.deb"
+fi
+echo "安装完成。在应用列表搜索“芯观”即可启动。"

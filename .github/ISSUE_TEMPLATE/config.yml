@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 使用说明与数据边界
+    url: https://github.com/chengminhua/xinguan/blob/main/docs/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md
+    about: 先确认“插电整机功耗不可读”“风扇只读”等已知边界。

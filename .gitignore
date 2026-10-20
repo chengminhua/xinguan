@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Build output
+build/
+dist/
+*.deb
+*.zip
+
+# Runtime artifacts
+diagnostics/
+*.log
+*.pid
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
