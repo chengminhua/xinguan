@@ -70,7 +70,7 @@ cd xinguan
 ## 安装发布包
 
 从 [Releases](https://github.com/chengminhua/xinguan/releases) 下载
-`芯观-<版本>-Ubuntu24.04-ARM64.zip`，解压后执行：
+`xinguan-<版本>-ubuntu24.04-arm64.zip`，解压后执行：
 
 ```bash
 cd 芯观-*-Ubuntu24.04-ARM64

@@ -28,10 +28,11 @@ VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 if not re.fullmatch(r"\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?", VERSION):
     sys.exit(f"VERSION 文件内容不是有效的版本号：{VERSION!r}")
 
-NAME = f"芯观-{VERSION}-Ubuntu24.04-ARM64"
+ARCHIVE = f"xinguan-{VERSION}-ubuntu24.04-arm64"
+BUNDLE_NAME = f"芯观-{VERSION}-Ubuntu24.04-ARM64"
 DEB = f"xinguan_{VERSION}_arm64.deb"
 STAGE = BUILD / "deb-root"
-BUNDLE = BUILD / NAME
+BUNDLE = BUILD / BUNDLE_NAME
 
 APP_FILES = ("app.py", "metrics.py", "check_runtime.py")
 
@@ -112,13 +113,13 @@ Description: Native hardware dashboard for AIBOOK M1000
     subprocess.run(["bash", "-n", str(BUNDLE / "安装芯观.sh"), str(STAGE / "usr/bin/xinguan")],
                    check=True)
 
-    archive = DIST / f"{NAME}.zip"
+    archive = DIST / f"{ARCHIVE}.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for path in sorted(BUNDLE.iterdir()):
-            zf.write(path, str(Path(NAME) / path.name))
+            zf.write(path, str(Path(BUNDLE_NAME) / path.name))
 
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
-    write(DIST, f"{NAME}.sha256", f"{digest}  {archive.name}\n")
+    write(DIST, f"{ARCHIVE}.sha256", f"{digest}  {archive.name}\n")
 
     print(json.dumps({
         "archive": str(archive.relative_to(ROOT)),
